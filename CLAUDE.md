@@ -2,361 +2,228 @@
 
 # Stage 1: Dataset Preparation for Chest X-ray Object Detection
 
-## 1. Current Project Stage
+## Current Stage
 
 This project is currently in **Stage 1: Dataset Preparation**.
 
 Do not implement model training yet.
+Do not create train/validation/test split yet.
+Do not create labeled/unlabeled split yet.
 Do not implement semi-supervised learning yet.
-Do not implement pseudo-labeling yet.
-Do not create teacher-student code yet.
-Do not create detection training scripts yet.
+Do not generate pseudo-labels yet.
+Do not convert annotations to YOLO, COCO, or Pascal VOC yet.
 
 The current goal is only to inspect, validate, and summarize the dataset and annotation files.
 
 ---
 
-## 2. Research Context
+## Research Context
 
 This project studies **semi-supervised object detection for chest X-ray abnormality detection**.
 
-However, the current stage is not semi-supervised training yet.
+However, the current stage is only dataset preparation.
 
-At this stage, the only task is to prepare the dataset correctly for a future object detection pipeline.
+At this stage, the task is to check whether the dataset is valid for a future object detection pipeline.
 
-The dataset must be checked carefully before any training pipeline is created.
-
----
-
-## 3. Dataset
-
-The starting dataset is:
-
-RSNA Pneumonia Detection Challenge
-
-The dataset may contain:
-
-* DICOM images
-* PNG images
-* JPG/JPEG images
-* CSV annotation files
-
-Do not assume the file format.
-Inspect the actual files inside the local project folder first.
+This is an object detection project, not image classification and not semantic segmentation.
 
 ---
 
-## 4. Object Detection Context
+## Dataset
 
-This project is an **object detection** project.
+The current dataset is:
 
-The future model will detect abnormal/pneumonia-like regions using bounding boxes.
+**VinBigData chest X-ray object detection subset**
 
-At this stage, the main focus is to verify whether the dataset and annotations are valid for object detection.
+The raw dataset is located at:
 
-Do not convert the project into image classification.
+```text
+data/raw/vinbigdata/
+```
 
-Do not convert the project into semantic segmentation.
+Current dataset structure:
 
----
+```text
+data/raw/vinbigdata/
+├── annotations/
+│   ├── train.csv
+│   ├── part_001_annotations.csv
+│   ├── part_001_image_ids.csv
+│   ├── ...
+│   ├── part_016_annotations.csv
+│   └── part_016_image_ids.csv
+│
+└── images/
+    ├── *.dicom
+```
 
-## 5. Important Dataset Definitions
+The image files are DICOM files.
 
-### Positive image
+The annotation files are CSV files.
 
-A positive image is an image explicitly labeled as abnormal or pneumonia-positive.
-
-In RSNA-style annotations, this is usually indicated by:
-
-Target = 1
-
-A positive image should have at least one valid bounding box.
-
-### Negative image
-
-A negative image is an image explicitly labeled as negative.
-
-In RSNA-style annotations, this is usually indicated by:
-
-Target = 0
-
-A negative image should not have a valid bounding box.
-
-### Bounding box
-
-A bounding box usually contains:
-
-* x
-* y
-* width
-* height
-
-However, the actual annotation file must be inspected before assuming the exact column names.
+Do not assume annotation columns before inspecting the actual CSV files.
 
 ---
 
-## 6. What Claude Must Do First
+## Important Rule
 
-Before creating or modifying any code, Claude must:
+Do not assume this dataset is RSNA.
 
-1. Inspect the current project folder structure.
-2. Identify where image files are stored.
-3. Identify where annotation files are stored.
-4. Report the detected file types.
-5. Report the likely dataset structure.
-6. Ask for clarification only if the dataset path or annotation file cannot be found.
+Do not assume:
 
-Do not write code before inspecting the available files.
+* image ID column name,
+* class label column name,
+* bounding-box column names,
+* bounding-box coordinate format,
+* positive/negative label definition,
+* train/validation/test split,
+* labeled/unlabeled split.
+
+Always inspect the actual files before making assumptions.
 
 ---
 
-## 7. Dataset Inspection Requirements
+## Object Detection Context
 
-Claude should inspect and summarize:
+This project is for object detection.
 
-### Folder structure
+The future model should detect abnormal regions on chest X-ray images using bounding boxes.
 
-* project root
-* data folder
-* raw data folder
-* image folder
-* annotation folder
-* output folder
+Do not convert this project into:
+
+* image classification,
+* semantic segmentation,
+* report generation,
+* image-level disease prediction only.
+
+The current stage is only dataset validation.
+
+---
+
+## What Claude Must Do First
+
+Before creating or modifying code, inspect the project folder and report:
+
+1. existing dataset folders,
+2. number of DICOM images,
+3. annotation CSV files found,
+4. columns of `train.csv`,
+5. columns of `part_001_annotations.csv`,
+6. columns of `part_001_image_ids.csv`,
+7. whether image filenames match annotation image IDs,
+8. whether the dataset is ready for Stage 1 validation,
+9. what checks should be included in `scripts/01_validate_dataset.py`.
+
+Do not modify files before reporting the plan.
+
+Do not create code until the dataset structure and annotation columns are inspected.
+
+---
+
+## Dataset Inspection Requirements
+
+The inspection should answer:
 
 ### Image files
 
-Check:
-
-* total number of image files
-* image file extensions
-* whether images are DICOM, PNG, JPG, or mixed
-* whether image files can be opened
-* unreadable or corrupted files
-* image width and height
-* abnormal image sizes
-* duplicate image IDs if detectable
+* How many DICOM images exist?
+* Are image files directly under `data/raw/vinbigdata/images/`?
+* What is the image ID format?
+* Do filenames include extensions?
+* Are there duplicate image IDs?
+* Are there unreadable or corrupted DICOM files?
 
 ### Annotation files
 
-Check:
+* Which CSV files exist?
+* What are the columns in `train.csv`?
+* What are the columns in each `part_xxx_annotations.csv` file?
+* What are the columns in each `part_xxx_image_ids.csv` file?
+* Which annotation file should be treated as the main annotation source?
+* Are `part_xxx_annotations.csv` files subsets of `train.csv` or separate derived files?
 
-* available CSV files
-* annotation file names
-* annotation columns
-* number of annotation rows
-* possible image ID column
-* possible class/target column
-* possible bounding-box columns
+### Matching between images and annotations
 
----
-
-## 8. Annotation Validation Requirements
-
-The annotation validation must check whether the annotation file has columns equivalent to:
-
-* patientId or image_id
-* x
-* y
-* width
-* height
-* Target or class label
-
-Claude must not assume the column names.
-Claude should inspect the CSV header and then map the detected columns.
-
-The script should check:
-
-1. Missing image IDs
-2. Duplicate annotation rows
-3. Missing target/class labels
-4. Missing bbox coordinates
-5. Non-numeric bbox coordinates
-6. Positive rows without bbox coordinates
-7. Negative rows with unexpected bbox coordinates
-8. Multiple boxes for the same image
-9. Number of positive images
-10. Number of negative images
-11. Number of true bounding boxes
+* Are image IDs in annotation files matched with DICOM filenames?
+* Are there annotation records without corresponding image files?
+* Are there image files without annotation records?
+* Are image IDs duplicated?
 
 ---
 
-## 9. Bounding-box Validation Requirements
+## Bounding-box Validation Requirements
 
-For each valid positive bounding box, check:
+After inspecting the annotation columns, the validation script should check bounding boxes.
 
-1. x >= 0
-2. y >= 0
-3. width > 0
-4. height > 0
-5. x + width <= image_width
-6. y + height <= image_height
+The checks should include:
 
-Also report:
+1. missing image IDs,
+2. missing class labels,
+3. missing bounding-box coordinates,
+4. non-numeric bounding-box coordinates,
+5. invalid bounding-box width or height,
+6. negative coordinates,
+7. bounding boxes outside image boundaries,
+8. multiple bounding boxes for the same image,
+9. images with no bounding boxes,
+10. annotation rows that do not match any image file.
 
-* very small bounding boxes
-* very large bounding boxes
-* unusual aspect ratios
-* boxes outside image boundary
-* boxes with missing values
-* boxes with invalid width or height
+Do not remove invalid annotations automatically.
 
-Do not remove invalid rows automatically.
-Only report them at this stage.
+Only report issues at this stage.
 
 ---
 
-## 10. Image and Annotation Matching
+## Required Output Files
 
-Claude must check consistency between images and annotations.
+When the validation script is created and executed later, it should save:
 
-Check:
-
-1. Images referenced in annotation file but missing from disk
-2. Images present on disk but missing from annotation file
-3. Annotation rows with image IDs that cannot be matched to image files
-4. Duplicate image IDs
-5. Number of unique images in annotations
-6. Number of image files on disk
-
-If DICOM files use `.dcm` but annotation IDs do not include extension, match by stem name.
-
-Example:
-
-patientId = abc123
-image file = abc123.dcm
-
-These should be treated as matching.
-
----
-
-## 11. Required Output Files
-
-The dataset validation step should save summary outputs.
-
-Create these folders if they do not exist:
-
-outputs/metrics
-outputs/logs
-outputs/reports
-
-Save the following files:
-
+```text
 outputs/metrics/dataset_summary.csv
 outputs/metrics/image_validation_summary.csv
 outputs/metrics/annotation_summary.csv
 outputs/metrics/bbox_validation_summary.csv
 outputs/reports/dataset_validation_report.md
 outputs/logs/dataset_validation.log
+```
 
-The report should be readable and explain the findings clearly.
+All outputs should be generated under `outputs/`.
 
----
-
-## 12. Required Summary Statistics
-
-The final dataset validation report must include:
-
-### Dataset summary
-
-* total image files
-* image formats found
-* total annotation files found
-* selected annotation file
-* total annotation rows
-* total unique image IDs in annotation
-* total matched images
-* total missing images
-* total extra images without annotation
-
-### Image summary
-
-* readable images
-* unreadable images
-* minimum image width
-* maximum image width
-* minimum image height
-* maximum image height
-* most common image size
-* abnormal image size count
-
-### Annotation summary
-
-* detected image ID column
-* detected target/class column
-* detected bbox columns
-* positive image count
-* negative image count
-* positive annotation row count
-* negative annotation row count
-* total true bounding boxes
-* images with multiple bounding boxes
-
-### Bounding-box summary
-
-* valid bbox count
-* missing bbox count
-* invalid width count
-* invalid height count
-* negative coordinate count
-* out-of-bound bbox count
-* suspiciously small bbox count
-* suspiciously large bbox count
-* unusual aspect ratio count
+Do not save generated reports inside `data/raw/`.
 
 ---
 
-## 13. Important Rules
-
-Claude must follow these rules:
+## Rules
 
 1. Do not train any model.
-2. Do not create any train/val/test split yet unless explicitly requested later.
+2. Do not create train/validation/test split yet.
 3. Do not create labeled/unlabeled split yet.
-4. Do not generate pseudo-labels.
-5. Do not convert annotations to YOLO or COCO yet unless explicitly requested later.
-6. Do not delete or modify raw data.
-7. Do not remove invalid annotations automatically.
+4. Do not implement semi-supervised learning yet.
+5. Do not generate pseudo-labels.
+6. Do not convert annotations to YOLO, COCO, or Pascal VOC yet.
+7. Do not delete or modify raw data.
 8. Do not invent dataset statistics.
 9. Always inspect files before assuming anything.
-10. Save every summary to outputs.
-11. Explain the plan before creating or editing code.
+10. Save outputs as CSV, Markdown, or log files.
+11. Explain planned changes before editing code.
+12. Keep the project focused on object detection.
 
 ---
 
-## 14. First Coding Task
+## First Task
 
-The first coding task is:
+The first task is:
 
-Create a script:
+Inspect the local project folder and report the actual VinBigData dataset structure.
 
+Do not create code yet.
+
+After the structure and annotation columns are confirmed, the first coding task will be:
+
+```text
 scripts/01_validate_dataset.py
+```
 
-This script should:
+This script should only validate the dataset and save reports.
 
-1. Inspect the dataset folder.
-2. Detect image files.
-3. Detect annotation CSV files.
-4. Read the selected annotation file.
-5. Validate annotation columns.
-6. Validate image readability.
-7. Validate bounding boxes.
-8. Match image files with annotation rows.
-9. Save CSV summaries.
-10. Save a Markdown validation report.
-
-Before writing the script, explain:
-
-* which folders will be inspected,
-* which files will be created,
-* what checks will be performed,
-* what output files will be saved.
-
----
-
-## 15. Expected Next Stage
-
-After this dataset validation stage is completed, the next stage will be:
-
-Stage 2: Create fixed train/validation/test split.
-
-Do not move to Stage 2 until Stage 1 output files are created and reviewed.
+It must not train models, create splits, generate pseudo-labels, or convert annotation formats.
