@@ -1,11 +1,38 @@
+# Visual Studio / VS Code local settings
+.vs/
+.vscode/
+
+# Python cache
 __pycache__/
 *.pyc
+*.pyo
+*.pyd
+
+# Python virtual environments
 .venv/
 venv/
 env/
+
+# Raw and processed datasets
 data/raw/
 data/processed/
+
+# Experiment outputs
 outputs/
 experiments/
+runs/
+checkpoints/
+weights/
+
+# Model files
+*.pt
+*.pth
+*.ckpt
+*.onnx
+
+# Logs
 *.log
+
+# OS files
 .DS_Store
+Thumbs.db
