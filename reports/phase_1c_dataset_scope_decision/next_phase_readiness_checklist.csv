@@ -1,0 +1,17 @@
+check_id,check_item,status,evidence,notes
+C01,PHASE 1A completed and committed,PASS,Commit 827c5d1 — Add Phase 1A dataset overview report,
+C02,PHASE 1B completed and committed,PASS,Commit eac73ba — Add Phase 1B annotation quality report,
+C03,Dataset subset size confirmed,PASS,PHASE 1A: total_images = 4894,"Expected: 4,894"
+C04,Abnormal/normal counts confirmed,PASS,"PHASE 1A: abnormal_images = 4394, normal_images = 500","Expected: 4,394 abnormal + 500 normal"
+C05,14 abnormal classes confirmed,PASS,PHASE 1A: num_abnormal_classes = 14,Expected: 14
+C06,No invalid bbox rows detected at metadata level,PASS,PHASE 1B: overall_quality_status = PASS; bbox_rows_with_invalid_x_order = 0,
+C07,Normal images contain no bbox rows,PASS,PHASE 1B: normal_images_with_bbox = 0,
+C08,All abnormal images have at least one valid bbox,PASS,PHASE 1B: abnormal_images_without_valid_bbox = 0,
+C09,Duplicate candidates recorded but not removed,PASS,PHASE 1B: 78 pairs flagged in duplicate_bbox_candidates.csv,Decision D06: recorded as metadata-level flag only
+C10,Image-boundary limitation recorded,PASS,PHASE 1B: bbox_rows_outside_image_boundary = not_available. PHASE 1C limitation_register: L2,Decision D07: DEFERRED — assigned to PHASE 2A — Image Availability & DICOM Metadata Validation
+C11,No split created,PASS,PHASE 1C scope boundary explicitly excludes split creation,
+C12,No leakage check performed,NOT_APPLICABLE,No split exists; leakage check requires split boundary,
+C13,No annotation conversion performed,PASS,PHASE 1C scope boundary explicitly excludes COCO/YOLO conversion,
+C14,No training performed,PASS,PHASE 1C scope boundary explicitly excludes model training,
+C15,PHASE 1C decision report generated,PASS,reports/phase_1c_dataset_scope_decision/dataset_scope_decision_report.md,
+C16,Ready for next phase,PASS,All C01–C15 items PASS or NOT_APPLICABLE,Next phase (dataset engineering) may begin after PHASE 1C confirmation.
