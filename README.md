@@ -1,58 +1,38 @@
-\# Semi-supervised Object Detection for Chest X-ray Abnormality Detection
+# SSL Detection X-ray
 
+This repository contains the research workflow for semi-supervised object detection on chest X-ray images using the VinBigData Chest X-ray Abnormalities Detection dataset.
 
+## Research direction
 
-This project studies semi-supervised object detection for chest X-ray abnormality detection.
+Vietnamese title:
 
+**Nghiên cứu học bán giám sát cho dò tìm bất thường trên ảnh X-quang phổi với detector dựa trên attention/Transformer trong điều kiện hạn chế nhãn**
 
+## Current stage
 
-\## Current Stage
-
-
-
-Stage 1: Dataset Preparation.
-
-
-
-At this stage, the project focuses only on:
-
-
-
-\- organizing the dataset folder,
-
-\- inspecting DICOM image files,
-
-\- inspecting annotation CSV files,
-
-\- validating bounding-box annotations,
-
-\- checking whether image IDs match annotation records,
-
-\- generating dataset validation reports.
-
-
-
-No model training is performed at this stage.
-
-
-
-\## Dataset
-
-
+The project is currently at the dataset selection and metadata-only subset preparation stage.
 
 Current dataset:
 
+- VinBigData Chest X-ray Abnormalities Detection
+- Metadata-only subset
+- 500 Normal / No Finding images
+- All abnormal images
+- No DICOM images are committed to Git
 
-
-\- VinBigData chest X-ray object detection subset
-
-
-
-Current raw dataset path:
-
-
+## Current data structure
 
 ```text
-
-data/raw/vinbigdata/
-
+data/raw/vinbigdata
+├── metadata_subset
+│   ├── selected_image_ids.csv
+│   ├── subset_train_annotations.csv
+│   ├── abnormal_image_ids.csv
+│   ├── normal_image_ids_500.csv
+│   ├── subset_summary.csv
+│   ├── subset_class_distribution.csv
+│   ├── positive_normal_summary.csv
+│   └── README_metadata_subset.md
+│
+└── original
+    └── train.csv
