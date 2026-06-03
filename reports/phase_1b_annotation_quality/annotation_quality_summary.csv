@@ -1,0 +1,20 @@
+metric,value
+total_annotation_rows,37596
+total_abnormal_bbox_rows,36096
+total_no_finding_rows,1500
+rows_missing_class_id,0
+rows_missing_class_name,0
+abnormal_rows_missing_any_bbox_coordinate,0
+bbox_rows_with_invalid_x_order,0
+bbox_rows_with_invalid_y_order,0
+bbox_rows_with_non_positive_width,0
+bbox_rows_with_non_positive_height,0
+bbox_rows_with_zero_area,0
+bbox_rows_with_negative_coordinate,0
+bbox_rows_outside_image_boundary,not_available (image dimensions not in metadata)
+bbox_rows_with_extremely_small_area,1805
+bbox_rows_with_extremely_large_area,1806
+duplicate_bbox_candidate_rows,78
+normal_images_with_bbox,0
+abnormal_images_without_valid_bbox,0
+overall_quality_status,PASS
