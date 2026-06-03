@@ -1,0 +1,15 @@
+metric,value
+total_images,4894.0
+abnormal_images,4394.0
+normal_images,500.0
+expected_abnormal_images,4394.0
+expected_normal_images,500.0
+total_annotation_rows,37596.0
+total_bbox_rows,36096.0
+num_abnormal_classes,14.0
+num_images_with_bbox,4394.0
+num_images_without_bbox,500.0
+mean_bbox_per_abnormal_image,8.2148
+median_bbox_per_abnormal_image,7.0
+min_bbox_per_abnormal_image,3.0
+max_bbox_per_abnormal_image,57.0
