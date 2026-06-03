@@ -1,38 +1,55 @@
-# Visual Studio / VS Code local settings
-.vs/
-.vscode/
-
-# Python cache
+# Python
 __pycache__/
-*.pyc
+*.py[cod]
 *.pyo
 *.pyd
-
-# Python virtual environments
 .venv/
 venv/
 env/
+.env
 
-# Raw and processed datasets
-data/raw/
-data/processed/
+# Jupyter
+.ipynb_checkpoints/
+notebooks/.ipynb_checkpoints/
 
-# Experiment outputs
-outputs/
-experiments/
-runs/
+# OS
+.DS_Store
+Thumbs.db
+
+# Large medical image files
+*.dicom
+*.dcm
+*.png
+*.jpg
+*.jpeg
+
+# Zip/archive files
+*.zip
+*.rar
+*.7z
+*.tar
+*.gz
+
+# Raw large folders
+data/raw/vinbigdata/images/
+data/raw/vinbigdata/zip_files/
+
+# Original full annotation can be large or dataset-controlled
+data/raw/vinbigdata/original/train.csv
+
+# Outputs
+outputs/*
+!outputs/.gitkeep
+
+# Model checkpoints
+models/
 checkpoints/
-weights/
-
-# Model files
-*.pt
 *.pth
+*.pt
 *.ckpt
 *.onnx
 
 # Logs
-*.log
-
-# OS files
-.DS_Store
-Thumbs.db
+logs/
+*.log.vs/ 
+.vs/ 

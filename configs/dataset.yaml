@@ -1,0 +1,33 @@
+project_name: ssl_detection_xray
+
+dataset:
+  name: VinBigData Chest X-ray Abnormalities Detection
+  source: Kaggle competition
+  task: semi-supervised object detection for chest X-ray abnormalities
+
+paths:
+  root_dir: "."
+  metadata_subset_dir: "data/raw/vinbigdata/metadata_subset"
+  original_annotation_csv: "data/raw/vinbigdata/original/train.csv"
+
+metadata_files:
+  selected_image_ids: "data/raw/vinbigdata/metadata_subset/selected_image_ids.csv"
+  subset_annotations: "data/raw/vinbigdata/metadata_subset/subset_train_annotations.csv"
+  abnormal_image_ids: "data/raw/vinbigdata/metadata_subset/abnormal_image_ids.csv"
+  normal_image_ids: "data/raw/vinbigdata/metadata_subset/normal_image_ids_500.csv"
+  subset_summary: "data/raw/vinbigdata/metadata_subset/subset_summary.csv"
+  class_distribution: "data/raw/vinbigdata/metadata_subset/subset_class_distribution.csv"
+  positive_normal_summary: "data/raw/vinbigdata/metadata_subset/positive_normal_summary.csv"
+
+subset:
+  normal_images: 500
+  abnormal_images: 4394
+  total_images_expected: 4894
+  normal_definition:
+    class_id: 14
+    class_name: "No finding"
+  abnormal_definition: "image has at least one annotation with class_id != 14"
+
+experiment_stage:
+  current_phase: "Dataset selection and metadata-only subset creation"
+  note: "No DICOM images are stored in the Git repository. Only metadata subset files are tracked."
