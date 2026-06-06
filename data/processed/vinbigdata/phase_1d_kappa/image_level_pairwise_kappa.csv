@@ -1,0 +1,4 @@
+reader_1,reader_2,triplet,n_images,cohen_kappa
+R10,R8,"('R10', 'R8', 'R9')",4222,1.0
+R10,R9,"('R10', 'R8', 'R9')",4222,1.0
+R8,R9,"('R10', 'R8', 'R9')",4222,1.0

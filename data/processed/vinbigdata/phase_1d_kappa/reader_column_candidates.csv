@@ -1,0 +1,9 @@
+file_path,candidate_column,num_unique_values,sample_values,reason_for_candidate_selection
+data\processed\vinbigdata\phase_1d_kappa\class_level_kappa.csv,reader_triplet,1,"('R10', 'R8', 'R9')",Column name 'reader_triplet' matches reader/radiologist/annotator keyword pattern.
+data\processed\vinbigdata\phase_1d_kappa\class_level_kappa.csv,reader_pair,3,"R10_vs_R8, R10_vs_R9, R8_vs_R9",Column name 'reader_pair' matches reader/radiologist/annotator keyword pattern.
+data\processed\vinbigdata\phase_1d_kappa\image_level_pairwise_kappa.csv,reader_1,2,"R10, R8",Column name 'reader_1' matches reader/radiologist/annotator keyword pattern.
+data\processed\vinbigdata\phase_1d_kappa\image_level_pairwise_kappa.csv,reader_2,2,"R8, R9",Column name 'reader_2' matches reader/radiologist/annotator keyword pattern.
+data\processed\vinbigdata\phase_1d_kappa\reader_count_per_image.csv,selected_reader_column,1,rad_id,Column name 'selected_reader_column' matches reader/radiologist/annotator keyword pattern.
+data\processed\vinbigdata\phase_1d_kappa\reader_count_per_image.csv,num_unique_readers,1,3,Column name 'num_unique_readers' matches reader/radiologist/annotator keyword pattern.
+data\raw\vinbigdata\metadata_subset\subset_train_annotations.csv,rad_id,17,"R1, R10, R11, R12, R13, R14, R15, R16",Column name 'rad_id' matches reader/radiologist/annotator keyword pattern.
+data\raw\vinbigdata\original\train.csv,rad_id,17,"R1, R10, R11, R12, R13, R14, R15, R16",Column name 'rad_id' matches reader/radiologist/annotator keyword pattern.

@@ -36,3 +36,38 @@ data/raw/vinbigdata
 │
 └── original
     └── train.csv
+
+## Current Research Workflow
+
+**Workflow Lock Keyword:** WF-SSL-XRAY-DET-V1
+
+**Main research direction:**
+Semi-supervised object detection for chest X-ray abnormality detection.
+
+**Current phase:**
+PHASE 1D — Multi-Reader Annotation Agreement Feasibility & Kappa Analysis.
+
+**Reason PHASE 1D was added:**
+To address the mentor's requirement to consider Kappa / multi-reader agreement
+before proceeding to annotation engineering.
+
+### Completed phases
+
+| Phase | Commit |
+|-------|--------|
+| PHASE 1A — Dataset Overview Report | 827c5d1 |
+| PHASE 1B — Annotation Quality Analysis | eac73ba |
+| PHASE 1C — Dataset Scope Decision | 1491550 |
+| PHASE 2A — Image/DICOM Accessibility & BBox Boundary Validation | cb8b0d8 |
+
+### Next phase after PHASE 1D
+
+PHASE 2B — Canonical Detection Annotation Schema & Class Mapping.
+
+### Important constraints
+
+- PHASE 2B remains format-agnostic and framework-independent.
+- COCO/YOLO/framework decisions are deferred to PHASE 2C.
+- ViT/attention is handled in PHASE 2C, PHASE 4B, PHASE 5, and PHASE 6.
+- No split, conversion, framework selection, model training, or pseudo-label
+  generation is allowed before the corresponding phase.

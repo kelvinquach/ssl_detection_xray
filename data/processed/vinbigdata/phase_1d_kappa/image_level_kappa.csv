@@ -1,0 +1,2 @@
+level,method,kappa_value,n_images,n_unanimous,n_disagreement,note
+image_level,Fleiss' Kappa,1.0,4894,4894,0,All images show unanimous reader decisions (is_abnormal). Fleiss' Kappa = 1.0 reflects perfect agreement but is trivially determined by dataset construction: the subset was selected such that all 3 assigned readers agreed on the abnormal/normal status of each image. This result does not provide discriminative information for model training.

@@ -1,0 +1,5 @@
+level,feasibility,evidence,action_taken
+metadata_availability,FEASIBLE,Reader column 'rad_id' found with 17 unique readers. Mean 3.0 readers per image.,FEASIBILITY_ASSESSED
+image_level_kappa,FEASIBLE,"4,894 images, 3 readers per image, all unanimous. Fleiss' Kappa = 1.0. Perfect but trivially so — see note.",COMPUTED
+class_level_kappa,PARTIALLY_FEASIBLE,"Class presence/absence can be derived per reader. However, different images are annotated by different reader triplets; only dominant triplet (R8/R9/R10: 4,222 images) yields stable estimates. Pairwise Cohen's Kappa computed for that triplet.",COMPUTED_FOR_DOMINANT_TRIPLET
+bbox_level_agreement,NOT_FEASIBLE_IN_PHASE_1D,"Bbox coordinates and reader identity exist, but an IoU-based cross-reader bbox matching protocol has not been defined yet. PHASE 2B creates canonical bbox tables only (format-agnostic, framework-independent); it does NOT compute bbox-level agreement. BBox-level agreement may be revisited in PHASE 6 after canonical annotations and a valid cross-reader matching protocol are available.",DOCUMENTED_ONLY
