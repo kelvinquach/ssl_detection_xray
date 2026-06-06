@@ -60,3 +60,15 @@ Dataset selection and metadata-only subset creation
 - Kappa computation is required if multi-reader metadata is sufficient.
 - If not feasible, document the reason clearly.
 - Do not fabricate Kappa values.
+
+## PHASE 2B Note
+
+PHASE 2B creates a canonical, framework-independent and format-agnostic
+detection annotation schema.
+
+- Outputs are stored under `reports/phase2b_canonical_schema/`.
+- Does NOT convert to COCO/YOLO/Pascal VOC.
+- Does NOT create train/val/test or labeled/unlabeled splits.
+- Does NOT train models or generate pseudo-labels.
+- Multi-reader annotations are preserved (no consensus/merging).
+- PHASE 2C will decide the framework-specific annotation format later.

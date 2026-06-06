@@ -1,0 +1,13 @@
+metric,value
+total_selected_images,4894
+total_canonical_image_rows,4894
+total_canonical_bbox_rows,36096
+total_valid_abnormal_boxes,36096
+total_invalid_bbox_rows,0
+total_no_finding_images,500
+total_abnormal_images,4394
+total_mixed_or_conflict_images,0
+total_unknown_label_images,0
+num_detection_classes,14
+num_image_level_classes,1
+overall_status,PASS

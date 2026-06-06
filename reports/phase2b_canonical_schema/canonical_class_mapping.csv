@@ -1,0 +1,16 @@
+canonical_class_id,original_class_id,class_name,is_detection_class,is_image_level_class,has_bbox,notes
+0.0,0,Aortic enlargement,True,False,True,Abnormal detection class with bounding-box annotations. canonical_class_id mirrors original_class_id.
+1.0,1,Atelectasis,True,False,True,Abnormal detection class with bounding-box annotations. canonical_class_id mirrors original_class_id.
+2.0,2,Calcification,True,False,True,Abnormal detection class with bounding-box annotations. canonical_class_id mirrors original_class_id.
+3.0,3,Cardiomegaly,True,False,True,Abnormal detection class with bounding-box annotations. canonical_class_id mirrors original_class_id.
+4.0,4,Consolidation,True,False,True,Abnormal detection class with bounding-box annotations. canonical_class_id mirrors original_class_id.
+5.0,5,ILD,True,False,True,Abnormal detection class with bounding-box annotations. canonical_class_id mirrors original_class_id.
+6.0,6,Infiltration,True,False,True,Abnormal detection class with bounding-box annotations. canonical_class_id mirrors original_class_id.
+7.0,7,Lung Opacity,True,False,True,Abnormal detection class with bounding-box annotations. canonical_class_id mirrors original_class_id.
+8.0,8,Nodule/Mass,True,False,True,Abnormal detection class with bounding-box annotations. canonical_class_id mirrors original_class_id.
+9.0,9,Other lesion,True,False,True,Abnormal detection class with bounding-box annotations. canonical_class_id mirrors original_class_id.
+10.0,10,Pleural effusion,True,False,True,Abnormal detection class with bounding-box annotations. canonical_class_id mirrors original_class_id.
+11.0,11,Pleural thickening,True,False,True,Abnormal detection class with bounding-box annotations. canonical_class_id mirrors original_class_id.
+12.0,12,Pneumothorax,True,False,True,Abnormal detection class with bounding-box annotations. canonical_class_id mirrors original_class_id.
+13.0,13,Pulmonary fibrosis,True,False,True,Abnormal detection class with bounding-box annotations. canonical_class_id mirrors original_class_id.
+,14,No finding,False,True,False,Image-level negative label (No finding). Not a detection object class. Excluded from bbox-level detection table. canonical_class_id is null.
