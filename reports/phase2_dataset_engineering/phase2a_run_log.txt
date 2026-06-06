@@ -1,0 +1,125 @@
+[    0.0s] ========================================================================
+[    0.0s] PHASE 2A — Image/DICOM Accessibility & BBox Boundary Validation
+[    0.0s] Started: 2026-06-06 16:14:25
+[    0.0s] Full DICOM + pixel validation mode for PHASE 2A.
+[    0.0s] ========================================================================
+[    0.0s] 
+[1/8] Loading config...
+[    0.0s]   Repo root : C:\Users\USER\ssl_detection_xray
+[    0.0s]   DICOM dir : D:\ssl_detection_xray\data\raw\vinbigdata\dicom_subset\train
+[    0.0s]   Dir exists: True
+[    0.0s] 
+[2/8] Output dir: C:\Users\USER\ssl_detection_xray\reports\phase2_dataset_engineering
+[    0.0s] 
+[3/8] Input validation + Phase 1A consistency re-check...
+[    0.1s]   [OK] total_images: 4894 (expected 4894)
+[    0.1s]   [OK] abnormal_images: 4394 (expected 4394)
+[    0.1s]   [OK] normal_images: 500 (expected 500)
+[    0.1s]   [OK] abnormal_bbox_rows: 36096 (expected 36096)
+[    0.1s]   [OK] abnormal_classes: 14 (expected 14)
+[    0.1s]   [OK] abnormal_images_with_bbox: 4394 (expected 4394)
+[    0.1s]   [OK] normal_images_with_bbox: 0 (expected 0)
+[    0.1s]   [OK] annotation IDs not in selected subset: 0
+[    0.1s]   [OK] normal IDs in abnormal annotations: 0
+[    0.1s]   Discrepancies: 0
+[    0.1s] 
+[4/8] Checking DICOM availability...
+[    2.2s]   DICOM found        : 4894
+[    2.2s]   DICOM missing      : 0
+[    2.2s]   DICOM extra        : 0
+[    2.2s]   Abnormal found/miss: 4394/0
+[    2.2s]   Normal found/miss  : 500/0
+[    2.2s] 
+[5/8] Full DICOM metadata + pixel array validation...
+[    2.5s]   Full DICOM + pixel validation mode for PHASE 2A.
+[    2.5s]   Total files to process: 4894
+[  134.0s]   Processed 250/4894 DICOM files...
+[  302.9s]   Processed 500/4894 DICOM files...
+[  469.7s]   Processed 750/4894 DICOM files...
+[  599.5s]   Processed 1000/4894 DICOM files...
+[  724.3s]   Processed 1250/4894 DICOM files...
+[  865.7s]   Processed 1500/4894 DICOM files...
+[  994.1s]   Processed 1750/4894 DICOM files...
+[ 1124.5s]   Processed 2000/4894 DICOM files...
+[ 1265.8s]   Processed 2250/4894 DICOM files...
+[ 1391.1s]   Processed 2500/4894 DICOM files...
+[ 1544.3s]   Processed 2750/4894 DICOM files...
+[ 1672.2s]   Processed 3000/4894 DICOM files...
+[ 1800.9s]   Processed 3250/4894 DICOM files...
+[ 1937.7s]   Processed 3500/4894 DICOM files...
+[ 2077.3s]   Processed 3750/4894 DICOM files...
+[ 2210.1s]   Processed 4000/4894 DICOM files...
+[ 2348.4s]   Processed 4250/4894 DICOM files...
+[ 2485.0s]   Processed 4500/4894 DICOM files...
+[ 2616.0s]   Processed 4750/4894 DICOM files...
+[ 2698.8s]   Processed 4894/4894 DICOM files...
+[ 2699.9s]   DICOM readable   : 4894/4894
+[ 2699.9s]   Pixel readable   : 4894/4894
+[ 2699.9s] 
+[6/8] BBox boundary validation...
+[ 2701.0s]   Total bbox checked    : 36,096
+[ 2701.0s]   Within boundary (ok)  : 36,096
+[ 2701.0s]   No dims available     : 0
+[ 2701.0s]   Outside boundary      : 0
+[ 2701.0s]     x_min < 0          : 0
+[ 2701.0s]     y_min < 0          : 0
+[ 2701.0s]     x_max > width      : 0
+[ 2701.0s]     y_max > height     : 0
+[ 2701.0s]     x_max <= x_min     : 0
+[ 2701.0s]     y_max <= y_min     : 0
+[ 2701.0s] 
+[7/8] Normal image consistency...
+[ 2701.0s]   Total normal images       : 500
+[ 2701.0s]   Normal with abnormal bbox : 0
+[ 2701.0s]   Normal DICOM found        : 500
+[ 2701.0s]   Normal DICOM readable     : 500
+[ 2701.0s]   Normal pixel readable     : 500
+[ 2701.0s] 
+[8/8] Building summary and saving artifacts...
+[ 2701.0s]   [OK] reports\phase2_dataset_engineering\phase2a_dicom_bbox_boundary_summary.csv  (40 rows)
+[ 2701.0s]   [OK] reports\phase2_dataset_engineering\phase2a_image_metadata.csv  (4894 rows)
+[ 2701.0s]   [OK] reports\phase2_dataset_engineering\phase2a_missing_dicom_files.csv  (0 rows)
+[ 2701.0s]   [OK] reports\phase2_dataset_engineering\phase2a_invalid_dicom_files.csv  (0 rows)
+[ 2701.0s]   [OK] reports\phase2_dataset_engineering\phase2a_invalid_bbox_boundary_cases.csv  (0 rows)
+[ 2701.0s]   [OK] reports\phase2_dataset_engineering\phase2a_dicom_bbox_boundary_report.md
+[ 2701.0s] 
+========================================================================
+[ 2701.0s] PHASE 2A EXECUTION SUMMARY
+[ 2701.0s] ========================================================================
+[ 2701.0s]   Repo root                    : C:\Users\USER\ssl_detection_xray
+[ 2701.0s]   Metadata dir                 : data/raw/vinbigdata/metadata_subset/
+[ 2701.0s]   DICOM dir                    : D:\ssl_detection_xray\data\raw\vinbigdata\dicom_subset\train
+[ 2701.0s]   Selected images              : 4894
+[ 2701.0s]   Abnormal images              : 4394
+[ 2701.0s]   Normal images                : 500
+[ 2701.0s]   Abnormal images with bbox    : 4394
+[ 2701.0s]   Normal images with bbox      : 0
+[ 2701.0s]   Input discrepancies          : 0
+[ 2701.0s]   DICOM found                  : 4894
+[ 2701.0s]   DICOM missing                : 0
+[ 2701.0s]   DICOM extra                  : 0
+[ 2701.0s]   DICOM readable               : 4894
+[ 2701.0s]   DICOM unreadable             : 0
+[ 2701.0s]   Valid image dims             : 4894
+[ 2701.0s]   Missing/invalid dims         : 0
+[ 2701.0s]   Pixel checked                : 4894
+[ 2701.0s]   Pixel readable               : 4894
+[ 2701.0s]   Pixel unreadable             : 0
+[ 2701.0s]   Pixel empty                  : 0
+[ 2701.0s]   Pixel shape mismatch         : 0
+[ 2701.0s]   Pixel with NaN               : 0
+[ 2701.0s]   Pixel with Inf               : 0
+[ 2701.0s]   Bbox rows checked            : 36096
+[ 2701.0s]   Bbox within boundary         : 36096
+[ 2701.0s]   Bbox outside boundary        : 0
+[ 2701.0s]   Bbox no dims available       : 0
+[ 2701.0s]   Normal images with bbox      : 0
+[ 2701.0s] 
+  Gate   : PASS
+[ 2701.0s]   Reason : All 4,894 DICOM files found, readable, and pixel arrays valid. All 4,894 image dimensions extracted. No bbox boundary vi...
+[ 2701.0s] 
+  Finished: 2026-06-06 16:59:26
+[ 2701.0s]   Log saved: C:\Users\USER\ssl_detection_xray\reports\phase2_dataset_engineering\phase2a_run_log.txt
+[ 2701.0s] ========================================================================
+[ 2701.0s] PHASE 2A COMPLETED — No bbox modified. No split created.
+[ 2701.0s] ========================================================================
