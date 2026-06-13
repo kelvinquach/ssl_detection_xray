@@ -83,3 +83,16 @@ detection annotation schema.
 - Does NOT train models or generate pseudo-labels.
 - Multi-reader annotations are preserved (no consensus/merging).
 - PHASE 2C will decide the framework-specific annotation format later.
+
+## PHASE 2C Note
+
+PHASE 2C — Framework-specific Annotation Format Decision selects COCO JSON
+as the primary annotation format for detection training phases.
+
+- Primary format: **COCO JSON** (with rad_id and source_row_id as custom fields).
+- Secondary fallback: YOLO TXT (only with sidecar metadata JSON).
+- Internal JSONL (PHASE 2B) is retained as canonical reference.
+- Decision outputs are under `reports/phase2c_format_decision/`.
+- COCO JSON file generation is deferred to **PHASE 2D**.
+- Train/val/test split is deferred to **PHASE 2E**.
+- Labeled/unlabeled SSL split is deferred to **PHASE 2F**.

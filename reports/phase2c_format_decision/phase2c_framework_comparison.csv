@@ -1,0 +1,45 @@
+format_key,format_label,criterion,score,rationale,total_score
+coco_json,COCO JSON,multi_class_detection_support,5,Native category list; 14 classes map directly.,54
+coco_json,COCO JSON,negative_image_support,5,Empty 'annotations' list per image_id is standard COCO negative.,54
+coco_json,COCO JSON,compatibility_with_canonical_schema,5,1:1 mapping: each canonical bbox row becomes one COCO annotation. rad_id and source_row_id stored as extra fields.,54
+coco_json,COCO JSON,compatibility_with_supervised_detection_baseline,5,"Detectron2, MMDetection, YOLOv5/v8, DETR, Co-DETR all support COCO natively.",54
+coco_json,COCO JSON,compatibility_with_ssl_object_detection_research,5,"STAC, Unbiased Teacher, Soft-Teacher, Semi-DETR, SoftER — all use COCO. SSL OD benchmark papers universally report on COCO-formatted data.",54
+coco_json,COCO JSON,medical_xray_workflow_suitability,5,JSON supports per-annotation metadata; supports per-image attributes. Image width/height from PHASE 2A already available.,54
+coco_json,COCO JSON,ease_of_validation,4,pycocotools provides API for loading and validating COCO JSON. Slightly verbose but well-tooled.,54
+coco_json,COCO JSON,reproducibility,5,Deterministic JSON files under version control. Exact schema documented.,54
+coco_json,COCO JSON,kaggle_colab_vastai_practicality,5,pycocotools pre-installed on Kaggle kernels and most deep-learning Docker images.,54
+coco_json,COCO JSON,rad_id_source_row_traceability_risk,5,"Custom extra fields ('rad_id', 'source_row_id') can be added to each annotation dict without breaking COCO spec. Zero loss of traceability.",54
+coco_json,COCO JSON,paper_thesis_suitability,5,Industry-standard in medical AI and detection papers. Reviewers expect COCO-format baselines.,54
+internal_jsonl,Internal JSONL (PHASE 2B),multi_class_detection_support,5,Fully supported; current PHASE 2B JSONL already stores all 14 classes.,47
+internal_jsonl,Internal JSONL (PHASE 2B),negative_image_support,5,Supported via 'boxes': [] for no_finding images. Already implemented.,47
+internal_jsonl,Internal JSONL (PHASE 2B),compatibility_with_canonical_schema,5,Perfect: JSONL IS the canonical format from PHASE 2B.,47
+internal_jsonl,Internal JSONL (PHASE 2B),compatibility_with_supervised_detection_baseline,2,Requires a custom DataLoader; no off-the-shelf framework reads this directly.,47
+internal_jsonl,Internal JSONL (PHASE 2B),compatibility_with_ssl_object_detection_research,3,SSL OD frameworks expect COCO or YOLO; JSONL needs conversion wrapper.,47
+internal_jsonl,Internal JSONL (PHASE 2B),medical_xray_workflow_suitability,5,Ideal for internal validation and provenance tracking.,47
+internal_jsonl,Internal JSONL (PHASE 2B),ease_of_validation,5,One line per image; easy to parse and validate with standard json tools.,47
+internal_jsonl,Internal JSONL (PHASE 2B),reproducibility,5,Deterministic line-by-line JSON. Already version-controlled in repo.,47
+internal_jsonl,Internal JSONL (PHASE 2B),kaggle_colab_vastai_practicality,3,Readable anywhere Python is available; no special library needed. Not directly usable by training frameworks without adaptation.,47
+internal_jsonl,Internal JSONL (PHASE 2B),rad_id_source_row_traceability_risk,5,Native: rad_id and source_row_id are first-class fields in every box dict.,47
+internal_jsonl,Internal JSONL (PHASE 2B),paper_thesis_suitability,4,Good as supplementary / appendix schema documentation; primary experiment results should use COCO for comparability.,47
+yolo_txt,YOLO TXT,multi_class_detection_support,5,Supported via class index in txt labels; class names in separate yaml/txt.,33
+yolo_txt,YOLO TXT,negative_image_support,2,Non-standard: requires empty .txt file or special yaml flag. No universal convention — implementation varies by framework version.,33
+yolo_txt,YOLO TXT,compatibility_with_canonical_schema,3,Requires coordinate normalisation (pixel → relative 0..1). Multi-reader: separate file per image cannot natively store rad_id.,33
+yolo_txt,YOLO TXT,compatibility_with_supervised_detection_baseline,4,YOLOv5/v8/v9/v10/v11 native. MMDetection supports YOLO via adapter.,33
+yolo_txt,YOLO TXT,compatibility_with_ssl_object_detection_research,3,"Most SSL OD research codebases (STAC, Unbiased Teacher, SoftER) use COCO as primary format. YOLO requires conversion wrapper.",33
+yolo_txt,YOLO TXT,medical_xray_workflow_suitability,2,Normalised coordinates complicate medical reporting (pixel-space metrics like IoU at fixed resolution are standard in radiology benchmarks).,33
+yolo_txt,YOLO TXT,ease_of_validation,3,"Simple line-by-line parsing, but class-count/file-count consistency hard to validate automatically.",33
+yolo_txt,YOLO TXT,reproducibility,3,Normalisation means pixel coordinates are derived; small rounding differences possible if resolution metadata changes.,33
+yolo_txt,YOLO TXT,kaggle_colab_vastai_practicality,4,YOLOv8 (ultralytics) widely available. Fast to train with default CLI.,33
+yolo_txt,YOLO TXT,rad_id_source_row_traceability_risk,1,Plain text per-line format has no standard metadata field. rad_id and source_row_id are lost unless a parallel sidecar file is maintained.,33
+yolo_txt,YOLO TXT,paper_thesis_suitability,3,Acceptable for YOLO-specific ablations but less common in academic detection benchmark comparisons that use COCO metrics.,33
+pascal_voc_xml,Pascal VOC XML,multi_class_detection_support,4,Supported; each <object> tag has <name>.,31
+pascal_voc_xml,Pascal VOC XML,negative_image_support,3,Supported via XML with no <object> tags; somewhat non-standard practice.,31
+pascal_voc_xml,Pascal VOC XML,compatibility_with_canonical_schema,3,One XML file per image; supports extra XML attributes for rad_id. Verbose and harder to batch-validate.,31
+pascal_voc_xml,Pascal VOC XML,compatibility_with_supervised_detection_baseline,3,"Supported by MMDetection and torchvision datasets, but requires adapter.",31
+pascal_voc_xml,Pascal VOC XML,compatibility_with_ssl_object_detection_research,2,SSL OD literature rarely uses Pascal VOC XML as primary format for new experiments; mostly seen in legacy code (PASCAL VOC 2007/2012).,31
+pascal_voc_xml,Pascal VOC XML,medical_xray_workflow_suitability,3,"XML can store rich metadata, but large collections of 4K+ XML files are cumbersome. No native support for multi-reader provenance.",31
+pascal_voc_xml,Pascal VOC XML,ease_of_validation,2,XML schema validation requires extra tooling. One-file-per-image makes batch validation slow.,31
+pascal_voc_xml,Pascal VOC XML,reproducibility,3,XML files are reproducible but verbose; large file count.,31
+pascal_voc_xml,Pascal VOC XML,kaggle_colab_vastai_practicality,2,Less common in modern Kaggle competitions and Colab notebooks. Older format.,31
+pascal_voc_xml,Pascal VOC XML,rad_id_source_row_traceability_risk,3,Possible via custom XML attributes but non-standard; fragile in practice.,31
+pascal_voc_xml,Pascal VOC XML,paper_thesis_suitability,3,Outdated in modern detection research; rarely used in new papers after 2019.,31
